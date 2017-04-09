@@ -9,18 +9,14 @@ public class MessageProcessor implements Runnable {
 	private final SalesReportObj  report;
 	private String message;
 	private Integer maxCapacity;
-	//private Boolean pauseExecution;
 	
 	private String MSG_TYPE_1_PATTERN = "^\\w+\\sat\\s\\d+\\D$";
 	private String MSG_TYPE_2_PATTERN = "^\\d+\\ssales\\sof\\s\\w+\\sat\\s\\d+\\D$";
-	//private String MSG_TYPE_3_PATTERN = "^(add|subtract|multiply)\\s\\d+\\D\\s\\w+$";
 
-	//public MessageProcessor(LinkedBlockingQueue<String> sharedQueue, SalesReportObj sharedReport, Integer maxCapacity, Boolean pauseExecution) {
 	public MessageProcessor(LinkedBlockingQueue<String> sharedQueue, SalesReportObj sharedReport, Integer maxCapacity) {
 		this.messageQueue = sharedQueue;
 		this.report = sharedReport;
 		this.maxCapacity = maxCapacity;
-		//this.pauseExecution = pauseExecution;
 	}
 
 	@Override
@@ -37,7 +33,6 @@ public class MessageProcessor implements Runnable {
 	private void processor() throws InterruptedException {
 		synchronized (messageQueue) {
 			while (messageQueue.isEmpty()) {
-				//System.out.println("Queue is empty " + Thread.currentThread().getName() + " is waiting , size: "b+ messageQueue.size());
 				messageQueue.wait();
 			}
 			
@@ -55,20 +50,8 @@ public class MessageProcessor implements Runnable {
 			}
 			
 			messageQueue.notifyAll();
-			
-//			if (report.getSalesReportSize() == maxCapacity) {
-//				MessageListenerInterrupt();
-//			}
-			
 		}
 	}
-	
-//	private void MessageListenerInterrupt() throws InterruptedException {
-//		synchronized (pauseExecution) {
-//			pauseExecution = true;
-//			pauseExecution.notifyAll();
-//		}
-//	}
 	
 	private void addToReportT1(String[] msg) throws InterruptedException {
 		synchronized (report) {
