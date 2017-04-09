@@ -4,7 +4,7 @@ This is a demostration application.
 
 ## Build and Run
 
-To build, run `mvn clean install` or extract from eclipse or netbeans.
+To build, run `mvn clean install` or extract from eclipse or netbeans as an executable JAR.
 
 To run  `java -jar messageProcessor-0.0.1-SNAPSHOT`. 
 
