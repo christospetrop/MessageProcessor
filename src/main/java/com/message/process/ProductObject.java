@@ -1,7 +1,9 @@
 /**
- * Simple Message Process
+ * Product Object
  * @author Christos Petropoulos <christospetrop@gmail.com>
  * @version 0.1.0
+ * 
+ * Compliance execution J2SE-1.6 and above. 
  */
 package com.message.process;
 

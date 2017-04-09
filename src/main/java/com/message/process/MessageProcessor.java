@@ -1,6 +1,13 @@
+/**
+ * Message Processor
+ * @author Christos Petropoulos <christospetrop@gmail.com>
+ * @version 0.1.0
+ * 
+ * This class process message notifications and them to a report(list)
+ * Compliance execution J2SE-1.6 and above. 
+ */
 package com.message.process;
 
-import java.util.Map.Entry;
 import java.util.concurrent.LinkedBlockingQueue;
 
 public class MessageProcessor implements Runnable {
@@ -29,10 +36,16 @@ public class MessageProcessor implements Runnable {
 			}
 		}
 	}
+	
+	/**
+	 * Polls messages from list and creates/updates reports depending the message type   
+	 * @throws InterruptedException
+	 */
 
 	private void processor() throws InterruptedException {
 		synchronized (messageQueue) {
 			while (messageQueue.isEmpty()) {
+				//System.out.println("Queue is empty " + Thread.currentThread().getName() + " is waiting , size: "b+ messageQueue.size());
 				messageQueue.wait();
 			}
 			
@@ -50,9 +63,15 @@ public class MessageProcessor implements Runnable {
 			}
 			
 			messageQueue.notifyAll();
+	
 		}
 	}
 	
+	/**
+	 * Processing Message Type 1 and add it to report
+	 * @param msg
+	 * @throws InterruptedException
+	 */
 	private void addToReportT1(String[] msg) throws InterruptedException {
 		synchronized (report) {
 			Integer sales;
@@ -83,6 +102,11 @@ public class MessageProcessor implements Runnable {
 		}
 	}
 	
+	/**
+	 * Processing Message Type 2 and add it to report
+	 * @param msg
+	 * @throws InterruptedException
+	 */
 	private void addToReportT2(String[] msg) throws InterruptedException {
 		synchronized (report) {
 			Integer sales;
@@ -113,6 +137,11 @@ public class MessageProcessor implements Runnable {
 		}
 	}
 	
+	/**
+	 * Processing Message Type 3 and add it to report
+	 * @param msg
+	 * @throws InterruptedException
+	 */
 	private void addToReportT3(String[] msg) throws InterruptedException {
 		synchronized (report) {
 			Integer sales;

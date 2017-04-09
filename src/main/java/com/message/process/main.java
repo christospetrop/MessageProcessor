@@ -1,7 +1,9 @@
 /**
- * Simple Message Process
+ * Simple message process
  * @author Christos Petropoulos <christospetrop@gmail.com>
  * @version 0.1.0
+ * 
+ * Compliance execution J2SE-1.6 and above. 
  */
 package com.message.process;
 
@@ -12,7 +14,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 public class main {
 	
 	public static void main(String[] args) {
-		
 		
 		LinkedBlockingQueue<String> messageQueue = new LinkedBlockingQueue<String>();
 		List<String> messageRecords = new ArrayList<String>();
